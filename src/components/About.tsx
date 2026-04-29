@@ -40,7 +40,7 @@ export default function About() {
         <motion.p variants={item} className="text-lg text-muted-foreground leading-relaxed mb-6">
           {profileData.about.summary}
         </motion.p>
-        <div className="grid grid-cols-2 gap-6 mt-10">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mt-10">
           <motion.div variants={item} className="p-8 rounded-none bg-primary text-primary-foreground hover:bg-primary/90 transition-colors flex flex-col justify-between min-h-[160px]">
             <h4 className="text-4xl md:text-5xl font-extrabold mb-2 tracking-tighter">B.Tech</h4>
             <p className="text-[10px] font-bold uppercase tracking-widest opacity-80">Education</p>
@@ -56,15 +56,15 @@ export default function About() {
         whileInView={{ opacity: 1, scale: 1 }}
         viewport={{ once: true }}
         transition={{ duration: 1 }}
-        className="flex-1 relative"
+        className="flex-1 relative w-full"
       >
          <motion.div 
             animate={{ y: [0, -5, 0] }}
             transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-            className="w-full aspect-square rounded-none overflow-hidden bg-card relative p-12 group flex flex-col justify-between"
+            className="w-full aspect-square md:aspect-auto md:h-full rounded-none overflow-hidden bg-card relative p-8 md:p-12 group flex flex-col justify-between min-h-[300px]"
          >
-            <div className="text-3xl font-extrabold text-foreground tracking-tighter">Developer<br/><span className="text-muted-foreground">Journey.</span></div>
-            <div className="text-8xl md:text-[120px] group-hover:scale-105 transition-transform duration-500 origin-bottom-left grayscale opacity-50">
+            <div className="text-2xl md:text-3xl font-extrabold text-foreground tracking-tighter">Developer<br/><span className="text-muted-foreground">Journey.</span></div>
+            <div className="text-7xl md:text-[120px] group-hover:scale-105 transition-transform duration-500 origin-bottom-left grayscale opacity-50">
                👨‍💻
             </div>
          </motion.div>

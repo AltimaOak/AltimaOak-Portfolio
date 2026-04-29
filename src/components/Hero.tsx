@@ -35,24 +35,24 @@ export default function Hero() {
   };
 
   return (
-    <section className="relative min-h-screen w-full flex items-center overflow-hidden px-8 md:px-24 pt-20">
+    <section className="relative min-h-screen w-full flex items-center overflow-hidden px-6 sm:px-12 md:px-24 py-20">
       <ThreeBackground />
       
-      <div className="grid grid-cols-1 lg:grid-cols-2 w-full items-center gap-12 z-10">
+      <div className="grid grid-cols-1 lg:grid-cols-2 w-full items-center gap-12 sm:gap-20 z-10">
         <motion.div 
           style={{ x: x / 50, y: y / 50 }}
           variants={containerVariants}
           initial="hidden"
           animate="visible"
-          className="text-left max-w-4xl"
+          className="text-left w-full"
         >
-          <motion.div variants={itemVariants} className="mb-8">
-            <div className="w-10 h-10 bg-primary rounded-tr-xl rounded-bl-xl rounded-tl-sm rounded-br-sm mb-12 flex items-center justify-center shadow-lg shadow-primary/20" />
+          <motion.div variants={itemVariants} className="mb-6 sm:mb-8">
+            <div className="w-10 h-10 bg-primary rounded-tr-xl rounded-bl-xl rounded-tl-sm rounded-br-sm mb-8 sm:mb-12 flex items-center justify-center shadow-lg shadow-primary/20" />
           </motion.div>
 
           <motion.h1
             variants={itemVariants}
-            className="text-7xl md:text-9xl font-extrabold tracking-tighter mb-6 text-foreground leading-[1.05]"
+            className="text-5xl sm:text-7xl md:text-9xl font-extrabold tracking-tighter mb-6 text-foreground leading-[1.05]"
           >
             {profileData.name}.
           </motion.h1>

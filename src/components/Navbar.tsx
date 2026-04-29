@@ -72,22 +72,55 @@ export default function Navbar() {
       <AnimatePresence>
         {mobileMenu && (
           <motion.div
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            transition={{ duration: 0.2 }}
-            className="absolute top-full left-0 w-full bg-background border-b border-border p-6 md:hidden flex flex-col gap-6 shadow-lg"
+            initial={{ opacity: 0, x: "100%" }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: "100%" }}
+            transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+            className="fixed inset-0 z-[100] bg-background md:hidden flex flex-col p-8 pt-24"
           >
-            {navLinks.map((link) => (
-              <a 
-                key={link.name} 
-                href={link.href} 
-                onClick={() => setMobileMenu(false)}
-                className="text-lg font-medium text-muted-foreground hover:text-foreground transition-colors"
-              >
-                {link.name}
-              </a>
-            ))}
+            {/* Close button inside full screen */}
+            <button 
+              className="absolute top-8 right-8 text-foreground p-2 bg-foreground/5 rounded-full"
+              onClick={() => setMobileMenu(false)}
+            >
+              <X size={28} />
+            </button>
+
+            <div className="flex flex-col gap-8 items-start">
+              <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-primary mb-2">Navigation</span>
+              {navLinks.map((link, i) => (
+                <motion.a 
+                  key={link.name} 
+                  href={link.href} 
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.1 + i * 0.05 }}
+                  onClick={() => setMobileMenu(false)}
+                  className="text-5xl font-extrabold text-foreground hover:text-primary transition-colors tracking-tighter"
+                >
+                  {link.name}.
+                </motion.a>
+              ))}
+            </div>
+
+            <div className="mt-auto pt-8 border-t border-border flex flex-col gap-6">
+              <div className="flex items-center justify-between">
+                <span className="text-sm font-bold text-muted-foreground uppercase tracking-widest">Theme Mode</span>
+                <button 
+                  onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+                  className="flex items-center gap-3 px-4 py-2 bg-foreground/5 rounded-none font-bold text-sm"
+                >
+                  {theme === "dark" ? (
+                    <><Sun className="w-4 h-4" /> Light</>
+                  ) : (
+                    <><Moon className="w-4 h-4" /> Dark</>
+                  )}
+                </button>
+              </div>
+              <p className="text-[10px] text-muted-foreground uppercase tracking-widest opacity-50">
+                © {new Date().getFullYear()} Aditya Yadav. Portfolio.
+              </p>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>
