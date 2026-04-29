@@ -1,0 +1,153 @@
+{
+  "name": "Aditya Yadav",
+  "role": "Java Developer | Computer Engineering Student",
+  "contact": {
+    "email": "adi144.yadav@gmail.com",
+    "phone": "+91 8108839330",
+    "location": "Thane, India",
+    "linkedin": "https://www.linkedin.com/in/aditya-yadav-ab0b242a5",
+    "github": "https://github.com/AltimaOak"
+  },
+  "about": {
+    "summary": "Enthusiastic Computer Engineering student at Lokmanya Tilak College of Engineering with a strong foundation in Java, Python, and Full Stack Development. Experienced in building AI-powered systems and healthcare applications. Passionate about creating innovative solutions and scaling complex systems.",
+    "objective": "Passionate Computer Engineering student with a solid foundation in Java, Python, and C++. Skilled in problem-solving and software development, seeking an opportunity to contribute to innovative projects and grow in a dynamic tech environment."
+  },
+  "skills": {
+    "Frontend": [
+      "React.js",
+      "HTML",
+      "CSS",
+      "JavaScript",
+      "Tailwind CSS",
+      "Bootstrap"
+    ],
+    "Backend": [
+      "Node.js",
+      "Express.js",
+      "Java",
+      "Python",
+      "MySQL",
+      "MongoDB",
+      "FastAPI",
+      "PHP"
+    ],
+    "AI-ML": [
+      "NLP",
+      "Machine Learning",
+      "Applied AI",
+      "Pandas",
+      "NumPy"
+    ],
+    "Tools": [
+      "Git",
+      "GitHub",
+      "VS Code",
+      "Postman",
+      "Firebase",
+      "Supabase",
+      "DBMS"
+    ]
+  },
+  "education": [
+    {
+      "degree": "B.Tech in Computer Engineering",
+      "institution": "Lokmanya Tilak College of Engineering (LTCOE)",
+      "duration": "2025 - 2028",
+      "details": "Currently pursuing. CGPA: 7.70/10"
+    },
+    {
+      "degree": "Diploma in Computer Engineering",
+      "institution": "Navjeevan Education Society’s Polytechnic, Bhandup",
+      "duration": "2022 - 2025",
+      "details": "Score: 85.89%"
+    },
+    {
+      "degree": "Secondary (X) - Maharashtra State Board",
+      "institution": "St. John The Baptist High School",
+      "duration": "2022",
+      "details": "Score: 73.00%"
+    }
+  ],
+  "experience": [
+    {
+      "role": "Applied AI Intern",
+      "company": "CSRBOX Foundation / AICTE / IBM SkillsBuild",
+      "duration": "Dec 2025 - Jan 2026",
+      "description": "Worked on real-world AI applications and projects under IBM SkillsBuild program."
+    },
+    {
+      "role": "Python Intern",
+      "company": "Resonit",
+      "duration": "May 2024 - Jul 2024",
+      "description": "Developed Python-based scripts and contributed to backend logic."
+    }
+  ],
+  "projects": [
+    {
+      "id": "1777385355969",
+      "title": "Samay Schedulr",
+      "category": "AI",
+      "description": "Samay Schedulr combines NLP (Natural Language Processing) and AI Intelligence to analyze your syllabus, parse timetables, and generate personalized study roadmaps—all in one smart platform.",
+      "techStack": [
+        "React",
+        "Python",
+        "FastAPI",
+        "Firebase"
+      ],
+      "duration": "jan2026-April2026",
+      "github": "https://github.com/AltimaOak/Samay-Schedulr",
+      "liveDemo": "samay-schedulr.vercel.app"
+    },
+    {
+      "id": "1",
+      "title": "Medichain",
+      "category": "AI",
+      "description": "Developed an AI-powered hospital system using Natural Language Processing (NLP) to analyze symptoms, determine severity, and guide patient care.",
+      "techStack": [
+        "Python",
+        "React",
+        "Flask"
+      ],
+      "duration": "Dec 2025 – Jan 2026",
+      "github": "https://github.com/AltimaOak/AI-Symptom-Checker",
+      "liveDemo": "https://medichain-theta.vercel.app/"
+    },
+    {
+      "id": "2",
+      "title": "Caairmate",
+      "category": "Web",
+      "description": "A healthcare application designed to assist patients and doctors with appointment booking, prescription management, and health tracking.",
+      "techStack": [
+        "java",
+        "Xml",
+        "Firebase"
+      ],
+      "duration": "Jan 2025 – Apr 2025",
+      "github": "https://github.com/AltimaOak/Caairmate",
+      "liveDemo": "#"
+    },
+    {
+      "id": "3",
+      "title": "Dropout Defender",
+      "category": "AI",
+      "description": "A Machine Learning-powered web application built to predict and reduce student dropout risk in schools using advanced algorithms.",
+      "techStack": [
+        "Python",
+        "Firebase",
+        "Logistic Regression",
+        "Random Forest"
+      ],
+      "duration": "Dec 2024 – May 2025",
+      "github": "https://github.com/AltimaOak/Dropout-Predictor",
+      "liveDemo": "dropout-defender.vercel.app"
+    }
+  ],
+  "certifications": [
+    "Web Development (Internshala)"
+  ],
+  "achievements": [
+    "Finalist in CODEBYTE 2.0 Hackathon (Top 20 of 90+ teams)",
+    "Participated in VEGA Hackathon - SAKEC",
+    "Participated in Pixel Paradigm"
+  ]
+}
