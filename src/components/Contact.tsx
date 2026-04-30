@@ -22,21 +22,17 @@ export default function Contact() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (status === "loading") return;
+    
     setStatus("loading");
     
     try {
-      const response = await fetch(`https://formspree.io/f/${profileData.contact.email}`, {
+      const response = await fetch("/api/contact", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          "Accept": "application/json"
         },
-        body: JSON.stringify({
-          name: formData.name,
-          email: formData.email,
-          subject: formData.subject,
-          message: formData.message
-        }),
+        body: JSON.stringify(formData),
       });
       
       if (response.ok) {
@@ -45,9 +41,11 @@ export default function Contact() {
         setTimeout(() => setStatus("idle"), 5000);
       } else {
         setStatus("error");
+        setTimeout(() => setStatus("idle"), 5000);
       }
     } catch (error) {
       setStatus("error");
+      setTimeout(() => setStatus("idle"), 5000);
     }
   };
 
@@ -118,11 +116,12 @@ export default function Contact() {
           className="p-8 md:p-12 bg-card border-none shadow-none relative overflow-hidden"
         >
           
-          <div className="space-y-6">
+          <form onSubmit={handleSubmit} className="space-y-6">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="space-y-2">
                 <label className="text-sm font-bold text-muted-foreground uppercase tracking-wider text-[10px] ml-1">Name</label>
                 <Input 
+                  required
                   value={formData.name}
                   onChange={(e) => setFormData({...formData, name: e.target.value})}
                   placeholder="John Doe" 
@@ -132,6 +131,7 @@ export default function Contact() {
               <div className="space-y-2">
                 <label className="text-sm font-bold text-muted-foreground uppercase tracking-wider text-[10px] ml-1">Email</label>
                 <Input 
+                  required
                   type="email" 
                   value={formData.email}
                   onChange={(e) => setFormData({...formData, email: e.target.value})}
@@ -152,6 +152,7 @@ export default function Contact() {
             <div className="space-y-2">
               <label className="text-sm font-bold text-muted-foreground uppercase tracking-wider text-[10px] ml-1">Message</label>
               <Textarea 
+                required
                 value={formData.message}
                 onChange={(e) => setFormData({...formData, message: e.target.value})}
                 placeholder="Tell me about your project..." 
@@ -159,16 +160,24 @@ export default function Contact() {
               />
             </div>
             
-            <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
-              <a 
-                href={`mailto:${profileData.contact.email}?subject=${encodeURIComponent(formData.subject || 'Project Inquiry')}&body=${encodeURIComponent(`Name: ${formData.name}\nEmail: ${formData.email}\n\n${formData.message}`)}`}
-                className="w-full h-14 bg-primary text-primary-foreground rounded-none text-lg font-bold flex items-center justify-center group transition-all hover:bg-primary/90 mt-4"
+            <motion.div whileHover={{ scale: 1.01 }} whileTap={{ scale: 0.99 }}>
+              <Button 
+                type="submit"
+                disabled={status === "loading"}
+                className={`w-full h-14 rounded-none text-lg font-bold flex items-center justify-center group transition-all mt-4 ${
+                  status === "success" ? "bg-green-600 hover:bg-green-700" : 
+                  status === "error" ? "bg-red-600 hover:bg-red-700" : "bg-primary hover:bg-primary/90"
+                }`}
               >
-                Send Message
-                <Send className="ml-3 w-4 h-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
-              </a>
+                {status === "loading" ? "Sending..." : 
+                 status === "success" ? "Message Sent!" : 
+                 status === "error" ? "Error Sending!" : "Send Message"}
+                {status === "idle" && <Send className="ml-3 w-4 h-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />}
+                {status === "success" && <CheckCircle className="ml-3 w-4 h-4" />}
+                {status === "error" && <AlertCircle className="ml-3 w-4 h-4" />}
+              </Button>
             </motion.div>
-          </div>
+          </form>
         </motion.div>
       </div>
     </Section>
