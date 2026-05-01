@@ -115,7 +115,7 @@
     {
       "id": "2",
       "title": "Caairmate",
-      "category": "Web",
+      "category": "Android",
       "description": "A healthcare application designed to assist patients and doctors with appointment booking, prescription management, and health tracking.",
       "techStack": [
         "java",

@@ -180,6 +180,7 @@ export default function AdminPage() {
                           <option value="AI">AI / Machine Learning</option>
                           <option value="Web">Web Development</option>
                           <option value="Android">Android / Mobile</option>
+                          <option value="Client">Client Project</option>
                           <option value="Other">Other Category</option>
                         </select>
                       </div>

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Section from "./Section";
 import profileData from "@/data/profile.json";
 import { motion, AnimatePresence } from "framer-motion";
@@ -33,11 +33,25 @@ import { useMotionValue, useSpring, useTransform } from "framer-motion";
 
 export default function Projects() {
   const [filter, setFilter] = useState("All");
-  const categories = ["All", "AI", "Web", "Other"];
+  const [projects, setProjects] = useState<Project[]>([]);
+  const [loading, setLoading] = useState(true);
+  const categories = ["All", "AI", "Web", "Android", "Client", "Other"];
+
+  useEffect(() => {
+    fetch("/api/profile")
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.projects) {
+          setProjects(data.projects);
+        }
+        setLoading(false);
+      })
+      .catch(() => setLoading(false));
+  }, []);
 
   const filteredProjects = filter === "All" 
-    ? (profileData.projects as Project[]) 
-    : (profileData.projects as Project[]).filter((p: Project) => p.category === filter);
+    ? projects 
+    : projects.filter((p: Project) => p.category?.toLowerCase() === filter.toLowerCase());
 
   const container = {
     hidden: { opacity: 0 },
@@ -91,12 +105,23 @@ export default function Projects() {
         initial="hidden"
         whileInView="show"
         viewport={{ once: true }}
-        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 min-h-[400px]"
       >
         <AnimatePresence mode="popLayout">
-          {filteredProjects.map((project) => (
-            <ProjectCard key={project.id} project={project} />
-          ))}
+          {filteredProjects.length > 0 ? (
+            filteredProjects.map((project) => (
+              <ProjectCard key={project.id} project={project} />
+            ))
+          ) : !loading && (
+            <motion.div 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              className="col-span-full flex flex-col items-center justify-center py-20 text-muted-foreground"
+            >
+              <Layers className="w-12 h-12 mb-4 opacity-20" />
+              <p>No projects found in this category.</p>
+            </motion.div>
+          )}
         </AnimatePresence>
       </motion.div>
     </Section>
@@ -107,12 +132,16 @@ function ProjectCard({ project }: { project: Project }) {
   const item = {
     hidden: { opacity: 0, y: 20 },
     show: { opacity: 1, y: 0 },
+    exit: { opacity: 0, scale: 0.95, transition: { duration: 0.2 } }
   };
 
   return (
     <motion.div
       variants={item}
       layout
+      initial="hidden"
+      animate="show"
+      exit="exit"
       whileHover={{ y: -4 }}
       transition={{ duration: 0.3 }}
     >
