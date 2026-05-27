@@ -55,12 +55,6 @@ export default function Navbar() {
           >
              <Command className="w-3 h-3" /> K
           </motion.button>
-          <button 
-            onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-            className="p-2 rounded-full hover:bg-foreground/5 transition-colors text-muted-foreground hover:text-foreground"
-          >
-            {theme === "dark" ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
-          </button>
         </div>
 
         {/* Mobile Toggle */}
@@ -76,17 +70,17 @@ export default function Navbar() {
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: "100%" }}
             transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-            className="fixed inset-0 z-[100] bg-background md:hidden flex flex-col p-8 pt-24"
+            className="fixed inset-y-0 right-0 w-full sm:w-[360px] z-[100] bg-background/95 backdrop-blur-xl border-l border-white/5 md:hidden flex flex-col p-8 pt-24 shadow-2xl"
           >
             {/* Close button inside full screen */}
             <button 
-              className="absolute top-8 right-8 text-foreground p-2 bg-foreground/5 rounded-full"
+              className="absolute top-8 right-8 text-foreground p-2 bg-foreground/5 rounded-full hover:bg-foreground/10 transition-colors"
               onClick={() => setMobileMenu(false)}
             >
-              <X size={28} />
+              <X size={24} />
             </button>
 
-            <div className="flex flex-col gap-8 items-start">
+            <div className="flex flex-col gap-6 sm:gap-8 items-start">
               <span className="text-[10px] font-bold uppercase tracking-[0.3em] text-primary mb-2">Navigation</span>
               {navLinks.map((link, i) => (
                 <motion.a 
@@ -96,7 +90,7 @@ export default function Navbar() {
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: 0.1 + i * 0.05 }}
                   onClick={() => setMobileMenu(false)}
-                  className="text-5xl font-extrabold text-foreground hover:text-primary transition-colors tracking-tighter"
+                  className="text-4xl sm:text-5xl font-extrabold text-foreground hover:text-primary transition-colors tracking-tighter"
                 >
                   {link.name}.
                 </motion.a>
@@ -104,19 +98,6 @@ export default function Navbar() {
             </div>
 
             <div className="mt-auto pt-8 border-t border-border flex flex-col gap-6">
-              <div className="flex items-center justify-between">
-                <span className="text-sm font-bold text-muted-foreground uppercase tracking-widest">Theme Mode</span>
-                <button 
-                  onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-                  className="flex items-center gap-3 px-4 py-2 bg-foreground/5 rounded-none font-bold text-sm"
-                >
-                  {theme === "dark" ? (
-                    <><Sun className="w-4 h-4" /> Light</>
-                  ) : (
-                    <><Moon className="w-4 h-4" /> Dark</>
-                  )}
-                </button>
-              </div>
               <p className="text-[10px] text-muted-foreground uppercase tracking-widest opacity-50">
                 © {new Date().getFullYear()} Aditya Yadav. Portfolio.
               </p>
