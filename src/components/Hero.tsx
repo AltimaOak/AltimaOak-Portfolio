@@ -6,7 +6,6 @@ import { Button } from "@/components/ui/button";
 import dynamic from "next/dynamic";
 import { ChevronDown } from "lucide-react";
 
-const ThreeBackground = dynamic(() => import("./ThreeBackground"), { ssr: false });
 const CrazyVisual = dynamic(() => import("./CrazyVisual"), { ssr: false });
 
 import { useMouseMove } from "@/lib/hooks"; // I'll create this hook or use a simple version inline
@@ -35,8 +34,7 @@ export default function Hero() {
   };
 
   return (
-    <section className="relative min-h-screen w-full flex items-center overflow-hidden px-6 sm:px-12 md:px-24 py-20">
-      <ThreeBackground />
+    <section id="hero" className="relative min-h-screen w-full flex items-center overflow-hidden px-6 sm:px-12 md:px-24 py-20">
       
       <div className="grid grid-cols-1 lg:grid-cols-2 w-full items-center gap-12 sm:gap-20 z-10">
         <motion.div 

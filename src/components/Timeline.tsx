@@ -4,6 +4,7 @@ import Section from "./Section";
 import profileData from "@/data/profile.json";
 import { motion } from "framer-motion";
 import { Briefcase, GraduationCap } from "lucide-react";
+import TiltCard from "@/components/ui/TiltCard";
 
 interface Experience {
   role: string;
@@ -56,14 +57,17 @@ export default function Timeline() {
                   transition={{ delay: idx * 0.2 + 0.5, type: "spring", stiffness: 200 }}
                   className="absolute left-[3px] top-4 w-4 h-4 rounded-full bg-primary z-10 group-hover:scale-125 transition-transform" 
                 />
-                <div className="p-8 rounded-none bg-card hover:bg-muted transition-all duration-300">
-                  <span className="text-[10px] font-bold text-muted-foreground uppercase tracking-widest mb-2 block">{exp.duration}</span>
-                  <h3 className="text-2xl font-bold mb-1 tracking-tight text-foreground">{exp.role}</h3>
-                  <p className="text-primary font-bold mb-4">{exp.company}</p>
-                  <p className="text-sm text-muted-foreground leading-relaxed">
-                    {exp.description}
-                  </p>
-                </div>
+                <TiltCard>
+                  <div className="p-8 rounded-none bg-card/45 border border-white/5 backdrop-blur-md hover:bg-muted/30 transition-all duration-300">
+                    <span className="text-[10px] font-bold text-muted-foreground uppercase tracking-widest mb-2 block">{exp.duration}</span>
+                    <h3 className="text-2xl font-bold mb-1 tracking-tight text-foreground">{exp.role}</h3>
+                    <p className="text-primary font-bold mb-4">{exp.company}</p>
+                    <p className="text-sm text-muted-foreground leading-relaxed">
+                      {exp.description}
+                    </p>
+                  </div>
+                </TiltCard>
+
               </motion.div>
             ))}
           </div>
@@ -102,16 +106,19 @@ export default function Timeline() {
                   transition={{ delay: idx * 0.2 + 0.5, type: "spring", stiffness: 200 }}
                   className="absolute left-[3px] top-4 w-4 h-4 rounded-full bg-accent z-10 group-hover:scale-125 transition-transform" 
                 />
-                <div className="p-8 rounded-none bg-card hover:bg-muted transition-all duration-300">
-                  <span className="text-[10px] font-bold text-muted-foreground uppercase tracking-widest mb-2 block">{edu.duration}</span>
-                  <h3 className="text-2xl font-bold mb-1 tracking-tight text-foreground">{edu.degree}</h3>
-                  <p className="text-accent font-bold mb-4">{edu.institution}</p>
-                  {edu.details && (
-                    <p className="text-sm text-muted-foreground leading-relaxed">
-                      {edu.details}
-                    </p>
-                  )}
-                </div>
+                <TiltCard>
+                  <div className="p-8 rounded-none bg-card/45 border border-white/5 backdrop-blur-md hover:bg-muted/30 transition-all duration-300">
+                    <span className="text-[10px] font-bold text-muted-foreground uppercase tracking-widest mb-2 block">{edu.duration}</span>
+                    <h3 className="text-2xl font-bold mb-1 tracking-tight text-foreground">{edu.degree}</h3>
+                    <p className="text-accent font-bold mb-4">{edu.institution}</p>
+                    {edu.details && (
+                      <p className="text-sm text-muted-foreground leading-relaxed">
+                        {edu.details}
+                      </p>
+                    )}
+                  </div>
+                </TiltCard>
+
               </motion.div>
             ))}
           </div>

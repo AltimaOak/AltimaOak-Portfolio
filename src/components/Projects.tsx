@@ -11,6 +11,7 @@ import { Button } from "@/components/ui/button";
 import { ExternalLink, Layers } from "lucide-react";
 import { GitHub } from "@/components/Icons";
 import Link from "next/link";
+import TiltCard from "@/components/ui/TiltCard";
 
 interface Project {
   id: string;
@@ -147,37 +148,40 @@ function ProjectCard({ project }: { project: Project }) {
     >
       <Dialog>
         <DialogTrigger render={<div />} nativeButton={false}>
-          <Card className="bg-card border-none rounded-none overflow-hidden group cursor-pointer h-full flex flex-col hover:shadow-lg transition-shadow duration-300">
-            <div className="relative aspect-video overflow-hidden bg-background">
-               <div className="absolute inset-0 bg-gradient-to-t from-card to-transparent opacity-80 z-10" />
-               <div className="absolute inset-0 flex items-center justify-center bg-foreground/5 group-hover:bg-foreground/10 transition-colors">
-                  <Layers className="w-12 h-12 text-primary/30 group-hover:text-primary transition-all group-hover:scale-110" />
-               </div>
-               <Badge className="absolute top-4 right-4 z-20 bg-primary text-primary-foreground border-none rounded-none text-[10px] font-bold uppercase tracking-wider">
-                  {project.category}
-               </Badge>
-            </div>
-            
-            <CardContent className="p-8 flex-1 flex flex-col bg-card">
-              <h3 className="text-2xl font-bold mb-2 text-foreground group-hover:text-primary transition-colors tracking-tight">{project.title}</h3>
-              <p className="text-muted-foreground text-sm line-clamp-2 mb-6 flex-1 leading-relaxed">
-                {project.description}
-              </p>
-              <div className="flex flex-wrap gap-2">
-                {project.techStack.slice(0, 3).map((tech: string) => (
-                  <span key={tech} className="text-[10px] uppercase tracking-wider font-bold text-muted-foreground group-hover:text-foreground transition-colors">
-                    {tech}
-                  </span>
-                ))}
-                {project.techStack.length > 3 && (
-                  <span className="text-[10px] uppercase tracking-wider font-bold text-muted-foreground">
-                    +{project.techStack.length - 3}
-                  </span>
-                )}
+          <TiltCard className="h-full">
+            <Card className="bg-card border-none rounded-none overflow-hidden group cursor-pointer h-full flex flex-col hover:shadow-lg transition-shadow duration-300">
+              <div className="relative aspect-video overflow-hidden bg-background">
+                 <div className="absolute inset-0 bg-gradient-to-t from-card to-transparent opacity-80 z-10" />
+                 <div className="absolute inset-0 flex items-center justify-center bg-foreground/5 group-hover:bg-foreground/10 transition-colors">
+                    <Layers className="w-12 h-12 text-primary/30 group-hover:text-primary transition-all group-hover:scale-110" />
+                 </div>
+                 <Badge className="absolute top-4 right-4 z-20 bg-primary text-primary-foreground border-none rounded-none text-[10px] font-bold uppercase tracking-wider">
+                    {project.category}
+                 </Badge>
               </div>
-            </CardContent>
-          </Card>
+              
+              <CardContent className="p-8 flex-1 flex flex-col bg-card">
+                <h3 className="text-2xl font-bold mb-2 text-foreground group-hover:text-primary transition-colors tracking-tight">{project.title}</h3>
+                <p className="text-muted-foreground text-sm line-clamp-2 mb-6 flex-1 leading-relaxed">
+                  {project.description}
+                </p>
+                <div className="flex flex-wrap gap-2">
+                  {project.techStack.slice(0, 3).map((tech: string) => (
+                    <span key={tech} className="text-[10px] uppercase tracking-wider font-bold text-muted-foreground group-hover:text-foreground transition-colors">
+                      {tech}
+                    </span>
+                  ))}
+                  {project.techStack.length > 3 && (
+                    <span className="text-[10px] uppercase tracking-wider font-bold text-muted-foreground">
+                      +{project.techStack.length - 3}
+                    </span>
+                  )}
+                </div>
+              </CardContent>
+            </Card>
+          </TiltCard>
         </DialogTrigger>
+
         
         <AnimatePresence>
           <DialogContent className="glass border-foreground/10 text-foreground max-w-2xl overflow-hidden">

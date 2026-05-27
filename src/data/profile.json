@@ -13,39 +13,37 @@
     "objective": "Passionate Computer Engineering student with a solid foundation in Java, Python, and C++. Skilled in problem-solving and software development, seeking an opportunity to contribute to innovative projects and grow in a dynamic tech environment."
   },
   "skills": {
-    "Frontend": [
-      "React.js",
-      "HTML",
-      "CSS",
-      "JavaScript",
-      "Tailwind CSS",
-      "Bootstrap"
-    ],
-    "Backend": [
-      "Node.js",
-      "Express.js",
+    "Languages": [
+      "C",
+      "C++",
       "Java",
       "Python",
-      "MySQL",
-      "MongoDB",
-      "FastAPI",
-      "PHP"
+      "JavaScript",
+      "TypeScript"
     ],
-    "AI-ML": [
-      "NLP",
-      "Machine Learning",
-      "Applied AI",
-      "Pandas",
-      "NumPy"
+    "Frontend": [
+      "React",
+      "Next.js",
+      "HTML",
+      "CSS"
     ],
-    "Tools": [
-      "Git",
-      "GitHub",
-      "VS Code",
-      "Postman",
+    "Backend & Frameworks": [
+      "Spring Boot",
+      "Flask",
+      "FastAPI"
+    ],
+    "AI / Computer Vision": [
+      "OpenCV",
+      "NLP"
+    ],
+    "Tools & Platforms": [
       "Firebase",
-      "Supabase",
-      "DBMS"
+      "MySQL",
+      "PostgreSQL",
+      "Git",
+      "Postman",
+      "VS Code",
+      "Vercel"
     ]
   },
   "education": [
