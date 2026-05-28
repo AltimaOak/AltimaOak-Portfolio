@@ -12,6 +12,7 @@ const navLinks = [
   { name: "Projects", href: "#projects" },
   { name: "Experience", href: "#experience" },
   { name: "Contact", href: "#contact" },
+  { name: "Resume", href: "/resume.pdf", isExternal: true },
 ];
 
 export default function Navbar() {
@@ -42,6 +43,8 @@ export default function Navbar() {
             <a 
               key={link.name} 
               href={link.href}
+              target={link.isExternal ? "_blank" : undefined}
+              rel={link.isExternal ? "noopener noreferrer" : undefined}
               className="text-sm font-medium text-muted-foreground hover:text-foreground hover:underline underline-offset-4 decoration-primary/50 transition-all py-1"
             >
               {link.name}
@@ -86,6 +89,8 @@ export default function Navbar() {
                 <motion.a 
                   key={link.name} 
                   href={link.href} 
+                  target={link.isExternal ? "_blank" : undefined}
+                  rel={link.isExternal ? "noopener noreferrer" : undefined}
                   initial={{ opacity: 0, x: 20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: 0.1 + i * 0.05 }}

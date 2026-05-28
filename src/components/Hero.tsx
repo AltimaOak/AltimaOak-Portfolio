@@ -4,7 +4,7 @@ import { motion, Variants } from "framer-motion";
 import profileData from "@/data/profile.json";
 import { Button } from "@/components/ui/button";
 import dynamic from "next/dynamic";
-import { ChevronDown } from "lucide-react";
+import { ChevronDown, Download } from "lucide-react";
 
 const CrazyVisual = dynamic(() => import("./CrazyVisual"), { ssr: false });
 
@@ -76,6 +76,17 @@ export default function Hero() {
             <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
               <Button size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90 transition-all px-8 py-6 text-lg rounded-none font-bold" render={<a href="#projects" />} nativeButton={false}>
                 View Projects
+              </Button>
+            </motion.div>
+            <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+              <Button 
+                size="lg" 
+                variant="outline" 
+                className="border-primary/40 hover:border-primary text-foreground hover:bg-primary/5 transition-all px-8 py-6 text-lg rounded-none font-bold flex items-center gap-2" 
+                render={<a href="/resume.pdf" download="Aditya_Yadav_Resume.pdf" target="_blank" rel="noopener noreferrer" />} 
+                nativeButton={false}
+              >
+                <Download className="w-5 h-5 mr-1" /> Resume
               </Button>
             </motion.div>
             <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
