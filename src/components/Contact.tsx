@@ -23,9 +23,9 @@ export default function Contact() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (status === "loading") return;
-    
+
     setStatus("loading");
-    
+
     try {
       const response = await fetch("/api/contact", {
         method: "POST",
@@ -34,7 +34,7 @@ export default function Contact() {
         },
         body: JSON.stringify(formData),
       });
-      
+
       if (response.ok) {
         setStatus("success");
         setFormData({ name: "", email: "", subject: "", message: "" });
@@ -83,7 +83,7 @@ export default function Contact() {
               — Contact
             </span>
             <h2 className="text-5xl md:text-6xl font-extrabold tracking-tighter text-foreground leading-[1.1]">
-              Any Type Of Query<br/>& Discussion.
+              Any Type Of Query<br />& Discussion.
             </h2>
           </motion.div>
           <motion.p variants={item} className="text-lg text-muted-foreground mb-10 leading-relaxed max-w-md">
@@ -115,63 +115,62 @@ export default function Contact() {
           transition={{ duration: 0.8 }}
           className="p-8 md:p-12 bg-card border-none shadow-none relative overflow-hidden"
         >
-          
+
           <form onSubmit={handleSubmit} className="space-y-6">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="space-y-2">
                 <label className="text-sm font-bold text-muted-foreground uppercase tracking-wider text-[10px] ml-1">Name</label>
-                <Input 
+                <Input
                   required
                   value={formData.name}
-                  onChange={(e) => setFormData({...formData, name: e.target.value})}
-                  placeholder="John Doe" 
-                  className="bg-background border-none focus-visible:ring-1 focus-visible:ring-primary h-14 rounded-none transition-all" 
+                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                  placeholder="Enter Your Name"
+                  className="bg-background border-none focus-visible:ring-1 focus-visible:ring-primary h-14 rounded-none transition-all"
                 />
               </div>
               <div className="space-y-2">
                 <label className="text-sm font-bold text-muted-foreground uppercase tracking-wider text-[10px] ml-1">Email</label>
-                <Input 
+                <Input
                   required
-                  type="email" 
+                  type="email"
                   value={formData.email}
-                  onChange={(e) => setFormData({...formData, email: e.target.value})}
-                  placeholder="john@example.com" 
-                  className="bg-background border-none focus-visible:ring-1 focus-visible:ring-primary h-14 rounded-none transition-all" 
+                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                  placeholder="Enter Your Email"
+                  className="bg-background border-none focus-visible:ring-1 focus-visible:ring-primary h-14 rounded-none transition-all"
                 />
               </div>
             </div>
             <div className="space-y-2">
               <label className="text-sm font-bold text-muted-foreground uppercase tracking-wider text-[10px] ml-1">Subject</label>
-              <Input 
+              <Input
                 value={formData.subject}
-                onChange={(e) => setFormData({...formData, subject: e.target.value})}
-                placeholder="Project Inquiry" 
-                className="bg-background border-none focus-visible:ring-1 focus-visible:ring-primary h-14 rounded-none transition-all" 
+                onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
+                placeholder="Project Inquiry"
+                className="bg-background border-none focus-visible:ring-1 focus-visible:ring-primary h-14 rounded-none transition-all"
               />
             </div>
             <div className="space-y-2">
               <label className="text-sm font-bold text-muted-foreground uppercase tracking-wider text-[10px] ml-1">Message</label>
-              <Textarea 
+              <Textarea
                 required
                 value={formData.message}
-                onChange={(e) => setFormData({...formData, message: e.target.value})}
-                placeholder="Tell me about your project..." 
-                className="bg-background border-none focus-visible:ring-1 focus-visible:ring-primary min-h-[150px] rounded-none transition-all resize-none" 
+                onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                placeholder="Tell me about your project..."
+                className="bg-background border-none focus-visible:ring-1 focus-visible:ring-primary min-h-[150px] rounded-none transition-all resize-none"
               />
             </div>
-            
+
             <motion.div whileHover={{ scale: 1.01 }} whileTap={{ scale: 0.99 }}>
-              <Button 
+              <Button
                 type="submit"
                 disabled={status === "loading"}
-                className={`w-full h-14 rounded-none text-lg font-bold flex items-center justify-center group transition-all mt-4 ${
-                  status === "success" ? "bg-green-600 hover:bg-green-700" : 
-                  status === "error" ? "bg-red-600 hover:bg-red-700" : "bg-primary hover:bg-primary/90"
-                }`}
+                className={`w-full h-14 rounded-none text-lg font-bold flex items-center justify-center group transition-all mt-4 ${status === "success" ? "bg-green-600 hover:bg-green-700" :
+                    status === "error" ? "bg-red-600 hover:bg-red-700" : "bg-primary hover:bg-primary/90"
+                  }`}
               >
-                {status === "loading" ? "Sending..." : 
-                 status === "success" ? "Message Sent!" : 
-                 status === "error" ? "Error Sending!" : "Send Message"}
+                {status === "loading" ? "Sending..." :
+                  status === "success" ? "Message Sent!" :
+                    status === "error" ? "Error Sending!" : "Send Message"}
                 {status === "idle" && <Send className="ml-3 w-4 h-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />}
                 {status === "success" && <CheckCircle className="ml-3 w-4 h-4" />}
                 {status === "error" && <AlertCircle className="ml-3 w-4 h-4" />}
@@ -202,9 +201,9 @@ function ContactInfo({ icon, title, value, link }: { icon: any, title: string, v
 
 function SocialButton({ icon, link, color }: { icon: any, link: string, color: string }) {
   return (
-    <a 
-      href={link} 
-      target="_blank" 
+    <a
+      href={link}
+      target="_blank"
       rel="noopener noreferrer"
       className="w-14 h-14 bg-card rounded-none flex items-center justify-center transition-all hover:-translate-y-1 text-muted-foreground hover:text-primary"
     >
