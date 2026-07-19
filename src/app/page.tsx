@@ -11,7 +11,6 @@ import Contact from "@/components/Contact";
 import Navbar from "@/components/Navbar";
 import CommandPalette from "@/components/CommandPalette";
 import Loading from "@/components/Loading";
-import Link from "next/link";
 
 const ThreeBackground = dynamic(() => import("@/components/ThreeBackground"), { ssr: false });
 
@@ -72,12 +71,9 @@ export default function Home() {
       
       {/* Footer */}
       <footer className="py-12 border-t border-white/5 text-center relative z-10 bg-background/40 backdrop-blur-md">
-        <p className="text-muted-foreground text-sm mb-4">
-          © {new Date().getFullYear()} Aditya Yadav. Built with Next.js, Three.js & Framer Motion.
+        <p className="text-muted-foreground text-sm">
+          © {new Date().getFullYear()} Aditya Yadav.
         </p>
-        <Link href="/admin" className="text-xs text-muted-foreground hover:text-neon-blue transition-colors">
-          Admin Dashboard
-        </Link>
       </footer>
 
       <CommandPalette />

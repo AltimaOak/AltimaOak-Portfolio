@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { CommandDialog, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList, CommandSeparator } from "@/components/ui/command";
-import { Briefcase, Folder, GraduationCap, Home, Mail, User, Save, Sun, Moon, Laptop } from "lucide-react";
+import { Briefcase, Folder, GraduationCap, Home, Mail, User, Sun, Moon, Laptop } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useTheme } from "next-themes";
 
@@ -60,10 +60,6 @@ export default function CommandPalette() {
           <CommandItem onSelect={() => runCommand(() => window.location.hash = "#contact")}>
             <Mail className="mr-2 h-4 w-4" />
             <span>Contact</span>
-          </CommandItem>
-          <CommandItem onSelect={() => runCommand(() => router.push("/admin"))}>
-            <Save className="mr-2 h-4 w-4" />
-            <span>Manage Projects (Admin)</span>
           </CommandItem>
         </CommandGroup>
         <CommandSeparator />
