@@ -58,26 +58,12 @@ export default function Navbar() {
             >
               <Download className="w-4 h-4" /> Resume
             </a>
-
-            <button
-              onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-              className="p-2.5 rounded-xl bg-card border border-[#F0E3D6] text-[#202124] hover:bg-[#FFF0E4] transition-all shadow-xs flex items-center justify-center"
-              aria-label="Toggle Theme"
-            >
-              {theme === "dark" ? <Sun className="w-4.5 h-4.5 text-amber-500" /> : <Sun className="w-4.5 h-4.5 text-amber-500" />}
-            </button>
           </div>
         </div>
 
         {/* Mobile Toggle */}
         <div className="flex items-center gap-3 md:hidden">
-          <button
-            onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-            className="p-2.5 rounded-xl bg-card border border-[#F0E3D6] text-[#202124]"
-            aria-label="Toggle Theme"
-          >
-            {theme === "dark" ? <Sun className="w-4 h-4 text-amber-500" /> : <Sun className="w-4 h-4 text-amber-500" />}
-          </button>
+          
           <button className="text-[#202124] p-2" onClick={() => setMobileMenu(!mobileMenu)}>
             {mobileMenu ? <X /> : <Menu />}
           </button>

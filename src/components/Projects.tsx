@@ -65,17 +65,14 @@ export default function Projects() {
   };
 
   return (
-    <Section id="projects" className="py-20">
+    <Section id="projects" className="py-10">
       <motion.div 
         initial={{ opacity: 0, y: 15 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
-        className="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 gap-6"
+        className="flex flex-col md:flex-row justify-between items-start md:items-end mb-6 gap-6"
       >
         <div>
-          <span className="text-primary text-xs font-bold uppercase tracking-[0.2em] mb-3 block">
-            — FEATURED PROJECTS
-          </span>
           <h2 className="text-4xl sm:text-5xl font-extrabold tracking-tight text-[#202124]">
             Selected Works.
           </h2>

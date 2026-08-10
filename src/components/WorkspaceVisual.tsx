@@ -14,31 +14,19 @@ export default function WorkspaceVisual() {
   if (!mounted) return null;
 
   return (
-    <div className="w-full max-w-xl mx-auto relative select-none flex items-center justify-center">
-      {/* Background Circular Warm Glow */}
-      <div className="absolute right-4 top-1/2 -translate-y-1/2 w-[340px] h-[340px] sm:w-[420px] sm:h-[420px] bg-[#FFEAD8] rounded-full blur-xl opacity-70 -z-10" />
-
-      {/* Geometric Dot Grid (Top Right) */}
-      <div 
-        className="absolute top-0 right-2 w-32 h-32 opacity-25 pointer-events-none z-0"
-        style={{
-          backgroundImage: `radial-gradient(#F97316 2px, transparent 2px)`,
-          backgroundSize: "14px 14px"
-        }}
-      />
-
-      {/* Main Developer Image Visual */}
+    <div className="w-full max-w-md lg:max-w-lg mx-auto relative select-none flex items-center justify-center">
+      {/* Clean User Portrait Photo */}
       <motion.div
-        initial={{ opacity: 0, scale: 0.95, y: 15 }}
-        animate={{ opacity: 1, scale: 1, y: 0 }}
-        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-        className="relative z-10 w-full rounded-3xl overflow-hidden shadow-2xl shadow-orange-950/5 border border-[#F0E3D6] bg-[#FFFFFF]"
+        initial={{ opacity: 0, scale: 0.98 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+        className="relative z-10 w-full flex items-center justify-center rounded-2xl overflow-hidden shadow-lg border border-[#F0E3D6] bg-white"
       >
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img 
-          src="/hero_developer.png" 
-          alt="Aditya Yadav Developer Workspace"
-          className="w-full h-auto object-cover object-center rounded-3xl transform transition-transform duration-700 hover:scale-[1.01]"
+          src="/aditya_photo.png" 
+          alt="Aditya Yadav"
+          className="w-full h-auto max-h-[500px] object-cover object-top rounded-2xl"
         />
       </motion.div>
     </div>

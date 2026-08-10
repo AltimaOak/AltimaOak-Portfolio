@@ -22,19 +22,16 @@ interface Education {
 
 export default function Timeline() {
   return (
-    <Section id="experience" className="py-20">
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
+    <Section id="experience" className="py-10">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-12">
         {/* Experience Column */}
         <div>
           <motion.div 
             initial={{ opacity: 0, y: 15 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="mb-10"
+            className="mb-6"
           >
-            <span className="text-primary text-xs font-bold uppercase tracking-[0.2em] mb-3 block">
-              — CAREER TIMELINE
-            </span>
             <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-[#202124] flex items-center gap-3">
               <Briefcase className="w-8 h-8 text-primary" />
               Experience.
@@ -77,9 +74,6 @@ export default function Timeline() {
             viewport={{ once: true }}
             className="mb-10"
           >
-            <span className="text-primary text-xs font-bold uppercase tracking-[0.2em] mb-3 block">
-              — ACADEMIC JOURNEY
-            </span>
             <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-[#202124] flex items-center gap-3">
               <GraduationCap className="w-8 h-8 text-primary" />
               Education.

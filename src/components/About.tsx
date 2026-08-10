@@ -24,7 +24,7 @@ export default function About() {
   };
 
   return (
-    <Section id="about" className="py-20">
+    <Section id="about" className="py-10">
       <motion.div 
         variants={container}
         initial="hidden"
@@ -35,9 +35,6 @@ export default function About() {
         {/* Left Column: Heading & Summary */}
         <div className="lg:col-span-6 flex flex-col justify-center">
           <motion.div variants={item} className="mb-6">
-            <span className="text-primary text-xs font-bold uppercase tracking-[0.2em] mb-3 block">
-              — ABOUT ME
-            </span>
             <h2 className="text-4xl sm:text-5xl font-extrabold tracking-tight text-[#202124] leading-[1.15]">
               Passionate about building clean &amp; impact-driven software.
             </h2>

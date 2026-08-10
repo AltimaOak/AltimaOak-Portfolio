@@ -70,7 +70,7 @@ export default function Contact() {
   };
 
   return (
-    <Section id="contact" className="py-20">
+    <Section id="contact" className="py-10">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
         <motion.div
           variants={container}
@@ -79,9 +79,6 @@ export default function Contact() {
           viewport={{ once: true }}
         >
           <motion.div variants={item} className="mb-6">
-            <span className="text-primary text-xs font-bold uppercase tracking-[0.2em] mb-3 block">
-              — LET&apos;S CONNECT
-            </span>
             <h2 className="text-4xl sm:text-5xl font-extrabold tracking-tight text-[#202124]">
               Any Type Of Query<br />&amp; Discussion.
             </h2>
