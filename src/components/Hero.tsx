@@ -129,15 +129,6 @@ export default function Hero() {
               <LinkedIn className="w-4.5 h-4.5" />
             </a>
             <a 
-              href="https://instagram.com" 
-              target="_blank" 
-              rel="noopener noreferrer" 
-              className="w-11 h-11 rounded-xl bg-white border border-[#F0E3D6] flex items-center justify-center text-[#202124] hover:text-[#F97316] hover:border-[#F97316]/40 shadow-xs transition-all hover:scale-105"
-              aria-label="Instagram"
-            >
-              <Instagram className="w-4.5 h-4.5" />
-            </a>
-            <a 
               href={`mailto:${profileData.contact.email}`}
               className="w-11 h-11 rounded-xl bg-white border border-[#F0E3D6] flex items-center justify-center text-[#202124] hover:text-[#F97316] hover:border-[#F97316]/40 shadow-xs transition-all hover:scale-105"
               aria-label="Email"
