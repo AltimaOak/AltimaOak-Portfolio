@@ -22,80 +22,68 @@ export default function Skills() {
   };
 
   const item = {
-    hidden: { opacity: 0, y: 20 },
-    show: { opacity: 1, y: 0, transition: { duration: 0.8 } },
+    hidden: { opacity: 0, y: 15 },
+    show: { opacity: 1, y: 0, transition: { duration: 0.5 } },
   };
 
   return (
-    <Section id="skills">
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-        {/* Left Column - Heading & 3D Interactive Word Cloud */}
-        <div className="lg:col-span-5 flex flex-col justify-center">
-          <motion.div 
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="mb-8"
-          >
-            <span className="text-primary text-xs font-bold uppercase tracking-[0.2em] mb-4 block">
-              — Expertise
-            </span>
-            <h2 className="text-5xl md:text-6xl font-extrabold tracking-tighter text-foreground leading-[1.1]">
-              Technical<br/>Arsenal.
-            </h2>
-            <p className="text-muted-foreground mt-4 leading-relaxed max-w-sm">
-              An interactive 3D representation of my core technologies. Drag the cloud to spin and explore my dynamic technical stack.
-            </p>
-          </motion.div>
-          <div className="w-full aspect-square rounded-none bg-card/45 border border-white/5 backdrop-blur-md overflow-hidden relative">
-            <Skills3DVisual />
-          </div>
-        </div>
+    <Section id="skills" className="py-20">
+      <motion.div 
+        initial={{ opacity: 0, y: 15 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        className="mb-12"
+      >
+        <span className="text-primary text-xs font-bold uppercase tracking-[0.2em] mb-3 block">
+          — SKILLS &amp; EXPERTISE
+        </span>
+        <h2 className="text-4xl sm:text-5xl font-extrabold tracking-tight text-[#202124]">
+          Technical Capabilities.
+        </h2>
+        <p className="text-[#6B7280] mt-3 leading-relaxed max-w-xl">
+          Structured view of core programming languages, frameworks, AI libraries, and developer tools.
+        </p>
+      </motion.div>
 
-        {/* Right Column - Categorized Skills Cards */}
-        <motion.div 
-          variants={container}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true }}
-          className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-6 w-full"
-        >
-          {categories.map((category, idx) => (
-            <motion.div
-              key={String(category)}
-              variants={item}
-              className="p-8 rounded-none bg-card/45 border border-white/5 backdrop-blur-md hover:bg-muted/30 hover:border-primary/20 transition-all duration-300 group"
-            >
-              <h3 className="text-2xl font-extrabold mb-6 text-foreground group-hover:text-primary transition-colors tracking-tight">
-                {String(category)}
-              </h3>
+      {/* Categorized Skills Grid */}
+      <motion.div 
+        variants={container}
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true }}
+        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full"
+      >
+        {categories.map((category) => (
+          <motion.div
+            key={String(category)}
+            variants={item}
+            className="p-6 rounded-xl bg-[#FFFFFF] border border-[#F0E3D6] shadow-xs hover:border-primary/40 transition-all duration-300 group flex flex-col justify-between"
+          >
+            <div>
+              <div className="flex items-center justify-between mb-5">
+                <h3 className="text-xl font-bold text-[#202124] group-hover:text-primary transition-colors tracking-tight">
+                  {String(category)}
+                </h3>
+                <span className="text-[10px] font-bold uppercase tracking-wider text-[#6B7280] bg-[#FFF0E4] px-2.5 py-0.5 rounded-md">
+                  {(profileData.skills[category] as string[]).length} Skills
+                </span>
+              </div>
+              
               <div className="flex flex-wrap gap-2">
-                {(profileData.skills[category] as string[]).map((skill: string, sIdx: number) => (
-                  <motion.div
+                {(profileData.skills[category] as string[]).map((skill: string) => (
+                  <span
                     key={skill}
-                    animate={{
-                      y: [0, -4, 0],
-                    }}
-                    transition={{
-                      duration: 3.5,
-                      repeat: Infinity,
-                      ease: "easeInOut",
-                      delay: sIdx * 0.15,
-                    }}
+                    className="bg-[#FAF6F0] text-[#202124] border border-[#F0E3D6] hover:bg-[#FFF0E4] hover:text-[#F97316] hover:border-primary/40 transition-colors px-3 py-1.5 rounded-lg font-semibold text-xs inline-flex items-center gap-1.5"
                   >
-                    <Badge 
-                      variant="secondary" 
-                      className="bg-background hover:bg-primary hover:text-primary-foreground text-muted-foreground transition-colors px-4 py-2 rounded-none border-none cursor-default font-bold uppercase tracking-wider text-[10px]"
-                    >
-                      {skill}
-                    </Badge>
-                  </motion.div>
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#F97316]" />
+                    {skill}
+                  </span>
                 ))}
               </div>
-            </motion.div>
-          ))}
-        </motion.div>
-      </div>
+            </div>
+          </motion.div>
+        ))}
+      </motion.div>
     </Section>
   );
 }

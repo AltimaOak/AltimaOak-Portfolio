@@ -1,121 +1,175 @@
 "use client";
 
-import { motion, Variants } from "framer-motion";
+import { motion, Variants, useScroll, useTransform } from "framer-motion";
 import profileData from "@/data/profile.json";
 import { Button } from "@/components/ui/button";
 import dynamic from "next/dynamic";
-import { ChevronDown, Download } from "lucide-react";
+import { ChevronDown, Download, Mail, ArrowRight, Package } from "lucide-react";
+import { GitHub, LinkedIn, Instagram } from "@/components/Icons";
 
-const CrazyVisual = dynamic(() => import("./CrazyVisual"), { ssr: false });
-
-import { useMouseMove } from "@/lib/hooks"; // I'll create this hook or use a simple version inline
+const WorkspaceVisual = dynamic(() => import("./WorkspaceVisual"), { ssr: false });
 
 export default function Hero() {
-  const { x, y } = useMouseMove();
-
   const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.2,
-        delayChildren: 0.3,
+        staggerChildren: 0.1,
+        delayChildren: 0.1,
       },
     },
   };
 
   const itemVariants: Variants = {
-    hidden: { opacity: 0, y: 20 },
+    hidden: { opacity: 0, y: 12 },
     visible: { 
       opacity: 1, 
       y: 0,
-      transition: { duration: 0.8, ease: "easeOut" }
+      transition: { duration: 0.6, ease: "easeOut" }
     },
   };
 
   return (
-    <section id="hero" className="relative min-h-screen w-full flex items-center overflow-hidden px-6 sm:px-12 md:px-24 py-20">
-      
-      <div className="grid grid-cols-1 lg:grid-cols-2 w-full items-center gap-12 sm:gap-20 z-10">
+    <section 
+      id="hero" 
+      className="relative min-h-[90vh] lg:min-h-screen w-full flex items-center overflow-hidden px-6 sm:px-12 md:px-20 py-24 bg-[#FFF9F4]"
+    >
+      <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 w-full items-center gap-12 lg:gap-8 z-10">
+        
+        {/* Left Content Column */}
         <motion.div 
-          style={{ x: x / 50, y: y / 50 }}
           variants={containerVariants}
           initial="hidden"
           animate="visible"
-          className="text-left w-full"
+          className="text-left w-full lg:col-span-6 flex flex-col justify-center pr-0 lg:pr-4"
         >
-          <motion.div variants={itemVariants} className="mb-6 sm:mb-8">
-            <div className="w-10 h-10 bg-primary rounded-tr-xl rounded-bl-xl rounded-tl-sm rounded-br-sm mb-8 sm:mb-12 flex items-center justify-center shadow-lg shadow-primary/20" />
+          {/* Greeting Badge */}
+          <motion.div variants={itemVariants} className="mb-6">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#FFF0E4] border border-[#F0E3D6] text-[#F97316] text-xs font-extrabold uppercase tracking-wider shadow-xs">
+              <span className="text-sm">👋</span>
+              <span>HELLO, I&apos;M</span>
+            </div>
           </motion.div>
 
+          {/* Name Heading */}
           <motion.h1
             variants={itemVariants}
-            className="text-5xl sm:text-7xl md:text-9xl font-extrabold tracking-tighter mb-6 text-foreground leading-[1.05]"
+            className="text-5xl sm:text-6xl md:text-7xl font-extrabold tracking-tight mb-2 text-[#202124] leading-[1.05]"
           >
-            {profileData.name}.
+            Aditya <span className="text-[#F97316]">Yadav.</span>
           </motion.h1>
 
+          {/* Orange Accent Bar below name */}
           <motion.div 
             variants={itemVariants}
-            className="w-16 h-2 bg-primary mb-10 rounded-full"
+            className="w-16 h-1.5 bg-[#F97316] my-4 rounded-full"
           />
 
-          <motion.div variants={itemVariants} className="mb-10 max-w-xl">
-            <span className="text-primary text-xs font-bold uppercase tracking-[0.2em] mb-4 block">
-              — Introduction
-            </span>
-            <p className="text-xl md:text-2xl text-muted-foreground leading-relaxed">
-              {profileData.role}
-            </p>
-          </motion.div>
+          {/* Subtitle / Role */}
+          <motion.h2 
+            variants={itemVariants}
+            className="text-xl sm:text-2xl font-extrabold text-[#202124] mb-4 tracking-tight"
+          >
+            Java Developer | Computer Engineering Student
+          </motion.h2>
 
+          {/* Bio Description */}
+          <motion.p 
+            variants={itemVariants}
+            className="text-base sm:text-lg text-[#6B7280] font-normal leading-relaxed mb-8 max-w-lg"
+          >
+            I build clean, efficient and user-friendly web applications and love turning ideas into real-world solutions.
+          </motion.p>
+
+          {/* CTA Buttons Row */}
           <motion.div
             variants={itemVariants}
-            className="flex flex-wrap items-center gap-6"
+            className="flex flex-wrap items-center gap-4 mb-10"
           >
-            <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
-              <Button size="lg" className="bg-primary text-primary-foreground hover:bg-primary/90 transition-all px-8 py-6 text-lg rounded-none font-bold" render={<a href="#projects" />} nativeButton={false}>
-                View Projects
-              </Button>
-            </motion.div>
-            <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
-              <Button 
-                size="lg" 
-                variant="outline" 
-                className="border-primary/40 hover:border-primary text-foreground hover:bg-primary/5 transition-all px-8 py-6 text-lg rounded-none font-bold flex items-center gap-2" 
-                render={<a href="/resume.pdf" download="Aditya_Yadav_Resume.pdf" target="_blank" rel="noopener noreferrer" />} 
-                nativeButton={false}
-              >
-                <Download className="w-5 h-5 mr-1" /> Resume
-              </Button>
-            </motion.div>
-            <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
-              <Button size="lg" variant="ghost" className="px-8 py-6 text-lg font-bold text-foreground hover:bg-transparent hover:text-primary transition-colors underline-offset-8 hover:underline" render={<a href="#contact" />} nativeButton={false}>
-                Contact Me →
-              </Button>
-            </motion.div>
+            <a
+              href="#projects"
+              className="bg-[#F97316] text-white hover:bg-[#EA580C] px-6 py-3.5 rounded-2xl font-bold text-sm shadow-md shadow-orange-500/20 flex items-center gap-2.5 transition-all hover:scale-[1.02] active:scale-[0.98]"
+            >
+              <Package className="w-4 h-4" /> View Projects
+            </a>
+            
+            <a
+              href="/resume.pdf"
+              download="Aditya_Yadav_Resume.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-white border border-[#F0E3D6] text-[#202124] hover:border-[#F97316]/50 hover:bg-[#FFF0E4]/40 px-6 py-3.5 rounded-2xl font-bold text-sm shadow-xs flex items-center gap-2.5 transition-all hover:scale-[1.02] active:scale-[0.98]"
+            >
+              <Download className="w-4 h-4 text-[#F97316]" /> Resume
+            </a>
+
+            <a
+              href="#contact"
+              className="bg-white border border-[#F0E3D6] text-[#202124] hover:border-[#F97316]/50 hover:bg-[#FFF0E4]/40 px-6 py-3.5 rounded-2xl font-bold text-sm shadow-xs flex items-center gap-2.5 transition-all hover:scale-[1.02] active:scale-[0.98]"
+            >
+              <Mail className="w-4 h-4 text-[#F97316]" /> Contact Me →
+            </a>
           </motion.div>
+
+          {/* Social Icon Cards */}
+          <motion.div 
+            variants={itemVariants}
+            className="flex items-center gap-4"
+          >
+            <a 
+              href={profileData.contact.github} 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="w-12 h-12 rounded-2xl bg-white border border-[#F0E3D6] flex items-center justify-center text-[#202124] hover:text-[#F97316] hover:border-[#F97316]/40 shadow-xs transition-all hover:scale-105"
+              aria-label="GitHub"
+            >
+              <GitHub className="w-5 h-5" />
+            </a>
+            <a 
+              href={profileData.contact.linkedin} 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="w-12 h-12 rounded-2xl bg-white border border-[#F0E3D6] flex items-center justify-center text-[#202124] hover:text-[#F97316] hover:border-[#F97316]/40 shadow-xs transition-all hover:scale-105"
+              aria-label="LinkedIn"
+            >
+              <LinkedIn className="w-5 h-5" />
+            </a>
+            <a 
+              href="https://instagram.com" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="w-12 h-12 rounded-2xl bg-white border border-[#F0E3D6] flex items-center justify-center text-[#202124] hover:text-[#F97316] hover:border-[#F97316]/40 shadow-xs transition-all hover:scale-105"
+              aria-label="Instagram"
+            >
+              <Instagram className="w-5 h-5" />
+            </a>
+            <a 
+              href={`mailto:${profileData.contact.email}`}
+              className="w-12 h-12 rounded-2xl bg-white border border-[#F0E3D6] flex items-center justify-center text-[#202124] hover:text-[#F97316] hover:border-[#F97316]/40 shadow-xs transition-all hover:scale-105"
+              aria-label="Email"
+            >
+              <Mail className="w-5 h-5" />
+            </a>
+          </motion.div>
+
         </motion.div>
 
-        {/* 3D Visual Section */}
+        {/* Right Visual Section */}
         <motion.div
-          initial={{ opacity: 0, scale: 0.8 }}
+          initial={{ opacity: 0, scale: 0.96 }}
           animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1, delay: 0.5 }}
-          className="hidden lg:flex justify-center items-center h-[500px] relative"
+          transition={{ duration: 0.8, delay: 0.2 }}
+          className="w-full lg:col-span-6 flex justify-center items-center relative"
         >
-          <CrazyVisual />
+          <WorkspaceVisual />
         </motion.div>
       </div>
 
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 2, duration: 1 }}
-        className="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce"
-      >
-        <ChevronDown className="text-muted-foreground w-6 h-6" />
-      </motion.div>
+      {/* Down Scroll Indicator */}
+      <div className="absolute bottom-6 left-1/2 -translate-x-1/2 animate-bounce hidden md:block opacity-60">
+        <ChevronDown className="text-[#6B7280] w-5 h-5" />
+      </div>
     </section>
   );
 }

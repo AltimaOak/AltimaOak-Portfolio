@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, Command, Sun, Moon } from "lucide-react";
+import { Menu, X, Command, Sun, Moon, Download } from "lucide-react";
 import { useTheme } from "next-themes";
 import profileData from "@/data/profile.json";
 
@@ -12,7 +12,6 @@ const navLinks = [
   { name: "Projects", href: "#projects" },
   { name: "Experience", href: "#experience" },
   { name: "Contact", href: "#contact" },
-  { name: "Resume", href: "/resume.pdf", isExternal: true },
 ];
 
 export default function Navbar() {
@@ -31,9 +30,9 @@ export default function Navbar() {
   if (!mounted) return null;
 
   return (
-    <nav className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${scrolled ? "bg-background/80 backdrop-blur-md border-b border-border shadow-sm py-4" : "py-6"}`}>
-      <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
-        <a href="#" className="text-xl md:text-2xl font-bold tracking-tight text-foreground transition-colors hover:text-primary">
+    <nav className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${scrolled ? "bg-[#FFF9F4]/90 backdrop-blur-md border-b border-[#F0E3D6] shadow-xs py-3.5" : "bg-transparent py-5"}`}>
+      <div className="max-w-7xl mx-auto px-6 sm:px-12 flex items-center justify-between">
+        <a href="#" className="text-2xl font-black tracking-tight text-[#202124] transition-colors hover:text-primary">
           ADITYA<span className="text-primary">.</span>
         </a>
 
@@ -43,27 +42,46 @@ export default function Navbar() {
             <a 
               key={link.name} 
               href={link.href}
-              target={link.isExternal ? "_blank" : undefined}
-              rel={link.isExternal ? "noopener noreferrer" : undefined}
-              className="text-sm font-medium text-muted-foreground hover:text-foreground hover:underline underline-offset-4 decoration-primary/50 transition-all py-1"
+              className="text-sm font-semibold text-[#6B7280] hover:text-[#202124] transition-all py-1"
             >
               {link.name}
             </a>
           ))}
-          <div className="h-4 w-[1px] bg-foreground/10 mx-2" />
-          <motion.button 
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="flex items-center gap-2 text-xs font-bold text-muted-foreground bg-foreground/5 px-3 py-1.5 rounded-lg border border-foreground/5"
-          >
-             <Command className="w-3 h-3" /> K
-          </motion.button>
+
+          <div className="flex items-center gap-3 ml-2">
+            <a 
+              href="/resume.pdf" 
+              download="Aditya_Yadav_Resume.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-primary text-primary-foreground hover:bg-primary/90 px-5 py-2.5 rounded-xl text-sm font-bold flex items-center gap-2 shadow-sm shadow-primary/20 transition-all hover:scale-[1.02] active:scale-[0.98]"
+            >
+              <Download className="w-4 h-4" /> Resume
+            </a>
+
+            <button
+              onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+              className="p-2.5 rounded-xl bg-card border border-[#F0E3D6] text-[#202124] hover:bg-[#FFF0E4] transition-all shadow-xs flex items-center justify-center"
+              aria-label="Toggle Theme"
+            >
+              {theme === "dark" ? <Sun className="w-4.5 h-4.5 text-amber-500" /> : <Sun className="w-4.5 h-4.5 text-amber-500" />}
+            </button>
+          </div>
         </div>
 
         {/* Mobile Toggle */}
-        <button className="md:hidden text-foreground" onClick={() => setMobileMenu(!mobileMenu)}>
-          {mobileMenu ? <X /> : <Menu />}
-        </button>
+        <div className="flex items-center gap-3 md:hidden">
+          <button
+            onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+            className="p-2.5 rounded-xl bg-card border border-[#F0E3D6] text-[#202124]"
+            aria-label="Toggle Theme"
+          >
+            {theme === "dark" ? <Sun className="w-4 h-4 text-amber-500" /> : <Sun className="w-4 h-4 text-amber-500" />}
+          </button>
+          <button className="text-[#202124] p-2" onClick={() => setMobileMenu(!mobileMenu)}>
+            {mobileMenu ? <X /> : <Menu />}
+          </button>
+        </div>
       </div>
 
       <AnimatePresence>
@@ -89,8 +107,6 @@ export default function Navbar() {
                 <motion.a 
                   key={link.name} 
                   href={link.href} 
-                  target={link.isExternal ? "_blank" : undefined}
-                  rel={link.isExternal ? "noopener noreferrer" : undefined}
                   initial={{ opacity: 0, x: 20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: 0.1 + i * 0.05 }}

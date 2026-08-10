@@ -70,7 +70,7 @@ export default function IntroAnimation() {
         display: "flex", flexDirection: "column",
         alignItems: "center", justifyContent: "center",
         overflow: "hidden",
-        background: "#060810", // Obsidian-black matching theme
+        background: "var(--background)", // Obsidian-black or cream matching theme
         fontFamily: "var(--font-outfit, sans-serif)",
       }}
     >
@@ -78,10 +78,10 @@ export default function IntroAnimation() {
       <div style={{
         position: "absolute", inset: 0, pointerEvents: "none", zIndex: 1,
         backgroundImage:
-          "linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px)," +
-          "linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px)",
+          "linear-gradient(var(--border) 1px, transparent 1px)," +
+          "linear-gradient(90deg, var(--border) 1px, transparent 1px)",
         backgroundSize: "56px 56px",
-        opacity: 0.1,
+        opacity: 0.15,
         maskImage: "radial-gradient(ellipse 90% 80% at 50% 50%, black 30%, transparent 100%)",
         WebkitMaskImage: "radial-gradient(ellipse 90% 80% at 50% 50%, black 30%, transparent 100%)",
       }} />
@@ -134,8 +134,8 @@ export default function IntroAnimation() {
                       fontWeight: 800,
                       letterSpacing: ch === " " ? "0.3em" : "-0.02em",
                       lineHeight: 1.1,
-                      color: ch === " " ? "transparent" : "#facc15", // Glow Gold
-                      textShadow: ch === " " ? "none" : "0 0 30px rgba(250, 204, 21, 0.25)",
+                      color: ch === " " ? "transparent" : "#FF9D2E", // Glow Orange
+                      textShadow: ch === " " ? "none" : "0 0 30px rgba(255, 157, 46, 0.25)",
                       display: "inline-block",
                     }}
                   >
@@ -161,7 +161,7 @@ export default function IntroAnimation() {
               </motion.p>
 
               {/* Elegant Loading bar indicator */}
-              <div style={{ width: 180, height: 2, background: "rgba(255,255,255,0.05)", margin: "32px auto 0", overflow: "hidden", position: "relative" }}>
+              <div style={{ width: 180, height: 2, background: "var(--border)", margin: "32px auto 0", overflow: "hidden", position: "relative" }}>
                 <motion.div
                   initial={{ left: "-100%" }}
                   animate={{ left: "100%" }}
@@ -169,7 +169,7 @@ export default function IntroAnimation() {
                   style={{
                     position: "absolute",
                     top: 0, bottom: 0, width: "50%",
-                    background: "linear-gradient(90deg, transparent, #facc15, transparent)"
+                    background: "linear-gradient(90deg, transparent, #FF9D2E, transparent)"
                   }}
                 />
               </div>
@@ -184,12 +184,12 @@ export default function IntroAnimation() {
         initial={{ opacity: 0, y: -8 }}
         animate={{ opacity: 0.65, y: 0 }}
         transition={{ delay: 0.5, duration: 0.5 }}
-        whileHover={{ opacity: 1, scale: 1.05, borderColor: "#facc15", color: "#facc15" }}
+        whileHover={{ opacity: 1, scale: 1.05, borderColor: "#FF9D2E", color: "#FF9D2E" }}
         whileTap={{ scale: 0.95 }}
         style={{
           position: "absolute", top: 40, right: 32, zIndex: 20,
           background: "transparent",
-          border: "1px solid rgba(255, 255, 255, 0.1)",
+          border: "1px solid var(--border)",
           color: "var(--muted-foreground)",
           padding: "8px 20px", borderRadius: 999,
           fontSize: "0.8rem",
@@ -209,7 +209,7 @@ export default function IntroAnimation() {
         style={{
           position: "absolute", bottom: 40, zIndex: 20,
           fontSize: "0.6rem", letterSpacing: "0.3em",
-          textTransform: "uppercase", color: "rgba(255,255,255,0.4)",
+          textTransform: "uppercase", color: "var(--muted-foreground)",
         }}
       >
         Aditya Yadav • Portfolio
@@ -270,8 +270,8 @@ function FloatingCubes() {
                   position: "absolute",
                   width: "100%",
                   height: "100%",
-                  border: "1px solid #facc15",
-                  background: "rgba(250, 204, 21, 0.05)",
+                  border: "1px solid #FF9D2E",
+                  background: "rgba(255, 157, 46, 0.05)",
                   opacity: 0.25,
                   transform: transform.replace("var(--size)", `${cube.size}px`),
                   backfaceVisibility: "visible",
@@ -309,8 +309,8 @@ function ParticleField() {
           style={{
             position: "absolute", left: p.x, top: p.y,
             width: p.size, height: p.size, borderRadius: "50%",
-            background: p.gold ? "#facc15" : "#7c3aed",
-            boxShadow: p.gold ? "0 0 5px rgba(250, 204, 21, 0.5)" : "0 0 5px rgba(124, 58, 237, 0.5)",
+            background: p.gold ? "#FF9D2E" : "#FFC46B",
+            boxShadow: p.gold ? "0 0 5px rgba(255, 157, 46, 0.5)" : "0 0 5px rgba(255, 196, 107, 0.5)",
             pointerEvents: "none", zIndex: 0,
           }}
         />

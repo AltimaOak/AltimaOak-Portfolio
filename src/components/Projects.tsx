@@ -65,34 +65,34 @@ export default function Projects() {
   };
 
   return (
-    <Section id="projects">
+    <Section id="projects" className="py-20">
       <motion.div 
-        initial={{ opacity: 0, y: 20 }}
+        initial={{ opacity: 0, y: 15 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
-        className="flex flex-col md:flex-row justify-between items-center mb-12 gap-6"
+        className="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 gap-6"
       >
-        <div className="mb-8">
-          <span className="text-primary text-xs font-bold uppercase tracking-[0.2em] mb-4 block">
-            — Portfolio
+        <div>
+          <span className="text-primary text-xs font-bold uppercase tracking-[0.2em] mb-3 block">
+            — FEATURED PROJECTS
           </span>
-          <h2 className="text-5xl md:text-6xl font-extrabold tracking-tighter text-foreground leading-[1.1]">
-            All Creative Works,<br/>Selected projects.
+          <h2 className="text-4xl sm:text-5xl font-extrabold tracking-tight text-[#202124]">
+            Selected Works.
           </h2>
-          <p className="text-muted-foreground mt-4 max-w-md">
-            Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium.
+          <p className="text-[#6B7280] mt-2 max-w-md">
+            Full-stack web systems, AI platforms, and mobile applications built with modern tools.
           </p>
         </div>
         
-        <div className="flex flex-wrap gap-6 text-sm font-bold uppercase tracking-wider text-[10px]">
+        <div className="flex flex-wrap gap-3 text-xs font-bold uppercase tracking-wider">
           {categories.map((cat) => (
             <button
               key={cat}
               onClick={() => setFilter(cat)}
-              className={`pb-1 transition-all border-b-2 ${
+              className={`px-4 py-2 rounded-lg transition-all ${
                 filter === cat 
-                ? "border-primary text-primary" 
-                : "border-transparent text-muted-foreground hover:text-foreground"
+                ? "bg-primary text-primary-foreground shadow-xs" 
+                : "bg-[#FFFFFF] text-[#6B7280] border border-[#F0E3D6] hover:text-[#202124]"
               }`}
             >
               {cat}
@@ -106,7 +106,7 @@ export default function Projects() {
         initial="hidden"
         whileInView="show"
         viewport={{ once: true }}
-        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 min-h-[400px]"
+        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 min-h-[380px]"
       >
         <AnimatePresence mode="popLayout">
           {filteredProjects.length > 0 ? (
@@ -117,10 +117,10 @@ export default function Projects() {
             <motion.div 
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              className="col-span-full flex flex-col items-center justify-center py-20 text-muted-foreground"
+              className="col-span-full flex flex-col items-center justify-center py-20 text-[#6B7280]"
             >
-              <Layers className="w-12 h-12 mb-4 opacity-20" />
-              <p>No projects found in this category.</p>
+              <Layers className="w-12 h-12 mb-3 opacity-30" />
+              <p className="font-medium">No projects found in this category.</p>
             </motion.div>
           )}
         </AnimatePresence>
@@ -131,7 +131,7 @@ export default function Projects() {
 
 function ProjectCard({ project }: { project: Project }) {
   const item = {
-    hidden: { opacity: 0, y: 20 },
+    hidden: { opacity: 0, y: 15 },
     show: { opacity: 1, y: 0 },
     exit: { opacity: 0, scale: 0.95, transition: { duration: 0.2 } }
   };
@@ -144,35 +144,34 @@ function ProjectCard({ project }: { project: Project }) {
       animate="show"
       exit="exit"
       whileHover={{ y: -4 }}
-      transition={{ duration: 0.3 }}
+      transition={{ duration: 0.25 }}
     >
       <Dialog>
         <DialogTrigger render={<div />} nativeButton={false}>
           <TiltCard className="h-full">
-            <Card className="bg-card border-none rounded-none overflow-hidden group cursor-pointer h-full flex flex-col hover:shadow-lg transition-shadow duration-300">
-              <div className="relative aspect-video overflow-hidden bg-background">
-                 <div className="absolute inset-0 bg-gradient-to-t from-card to-transparent opacity-80 z-10" />
-                 <div className="absolute inset-0 flex items-center justify-center bg-foreground/5 group-hover:bg-foreground/10 transition-colors">
-                    <Layers className="w-12 h-12 text-primary/30 group-hover:text-primary transition-all group-hover:scale-110" />
+            <Card className="bg-[#FFFFFF] border border-[#F0E3D6] rounded-xl overflow-hidden group cursor-pointer h-full flex flex-col shadow-xs hover:shadow-md hover:border-primary/40 transition-all duration-300">
+              <div className="relative aspect-video overflow-hidden bg-[#FAF6F0] border-b border-[#F0E3D6]">
+                 <div className="absolute inset-0 flex items-center justify-center bg-primary/5 group-hover:bg-primary/10 transition-colors">
+                    <Layers className="w-10 h-10 text-primary/40 group-hover:text-primary transition-all group-hover:scale-110" />
                  </div>
-                 <Badge className="absolute top-4 right-4 z-20 bg-primary text-primary-foreground border-none rounded-none text-[10px] font-bold uppercase tracking-wider">
+                 <Badge className="absolute top-3.5 right-3.5 z-20 bg-[#FFF0E4] text-[#F97316] border border-[#F0E3D6] rounded-md text-[10px] font-bold uppercase tracking-wider px-2.5 py-1 shadow-xs">
                     {project.category}
                  </Badge>
               </div>
               
-              <CardContent className="p-8 flex-1 flex flex-col bg-card">
-                <h3 className="text-2xl font-bold mb-2 text-foreground group-hover:text-primary transition-colors tracking-tight">{project.title}</h3>
-                <p className="text-muted-foreground text-sm line-clamp-2 mb-6 flex-1 leading-relaxed">
+              <CardContent className="p-6 flex-1 flex flex-col bg-[#FFFFFF]">
+                <h3 className="text-xl font-bold mb-2 text-[#202124] group-hover:text-primary transition-colors tracking-tight">{project.title}</h3>
+                <p className="text-[#6B7280] text-xs line-clamp-2 mb-5 flex-1 leading-relaxed">
                   {project.description}
                 </p>
-                <div className="flex flex-wrap gap-2">
+                <div className="flex flex-wrap gap-1.5 pt-2 border-t border-[#F0E3D6]">
                   {project.techStack.slice(0, 3).map((tech: string) => (
-                    <span key={tech} className="text-[10px] uppercase tracking-wider font-bold text-muted-foreground group-hover:text-foreground transition-colors">
+                    <span key={tech} className="text-[10px] uppercase tracking-wider font-semibold text-[#202124] px-2 py-0.5 rounded-md bg-[#FAF6F0] border border-[#F0E3D6]">
                       {tech}
                     </span>
                   ))}
                   {project.techStack.length > 3 && (
-                    <span className="text-[10px] uppercase tracking-wider font-bold text-muted-foreground">
+                    <span className="text-[10px] uppercase tracking-wider font-semibold text-[#6B7280] px-2 py-0.5 rounded-md bg-[#FAF6F0] border border-[#F0E3D6]">
                       +{project.techStack.length - 3}
                     </span>
                   )}

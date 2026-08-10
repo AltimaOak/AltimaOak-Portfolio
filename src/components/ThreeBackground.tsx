@@ -196,7 +196,7 @@ function CosmicDust({ activeSection }: { activeSection: string }) {
         size={0.04} // Extremely small and crisp star points
         color={pColor}
         transparent
-        opacity={isDark ? 0.35 : 0.15} // Low opacity, zero text clashing
+        opacity={activeSection === "hero" ? 0 : (isDark ? 0.35 : 0.15)} // Hide completely in Hero section
         blending={THREE.AdditiveBlending}
         sizeAttenuation
       />
@@ -217,24 +217,33 @@ export default function ThreeBackground({ activeSection }: ThreeBackgroundProps)
 
   if (!mounted) return null;
 
+  // Unmount WebGL Canvas completely during hero section to prevent concurrent rendering lag
+  if (activeSection === "hero") {
+    return <div className="fixed inset-0 -z-20 pointer-events-none w-screen h-screen bg-background" />;
+  }
+
   const isDark = theme !== "light";
   const lightColor = SECTION_COLORS[activeSection] || AMBER_GOLD;
 
   return (
-    <div className="fixed inset-0 -z-20 pointer-events-none w-screen h-screen bg-[#060810]">
+    <div className="fixed inset-0 -z-20 pointer-events-none w-screen h-screen bg-background">
       <Canvas 
         camera={{ position: [0, 0, 7.5], fov: 65 }}
         gl={{ antialias: true, alpha: false, powerPreference: "high-performance" }}
       >
         {/* Soft, dark ambient base */}
-        <ambientLight intensity={isDark ? 0.15 : 0.65} />
+        <ambientLight intensity={activeSection === "hero" ? (isDark ? 0.1 : 0.9) : (isDark ? 0.15 : 0.65)} />
         
         {/* Highly focused, low-intensity spotlights for ambient neon accenting */}
-        <pointLight position={[5, 5, 5]} intensity={isDark ? 0.6 : 0.4} color={lightColor} />
-        <pointLight position={[-5, -5, 2]} intensity={isDark ? 0.4 : 0.2} color={MIDNIGHT_BLUE} />
+        {activeSection !== "hero" && (
+          <>
+            <pointLight position={[5, 5, 5]} intensity={isDark ? 0.6 : 0.4} color={lightColor} />
+            <pointLight position={[-5, -5, 2]} intensity={isDark ? 0.4 : 0.2} color={MIDNIGHT_BLUE} />
+          </>
+        )}
         
-        {/* Gentle stardust background */}
-        {isDark && (
+        {/* Gentle stardust background - hidden in Hero section */}
+        {isDark && activeSection !== "hero" && (
           <Stars 
             radius={110} 
             depth={30} 
